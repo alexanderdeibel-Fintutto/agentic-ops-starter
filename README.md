@@ -1,11 +1,21 @@
 # agentic-ops-starter
 
-A small, practical starter kit for running Claude Code (or similar coding agents) as a disciplined team instead of a chat window. Extracted from the setup I use to build and operate several production apps alone as a non-programmer founder.
+How I build and operate software with AI coding agents as a disciplined team, as a non-programmer founder working alone. Plus the evidence that it works.
 
-**What it is:** specs first, agents with fixed roles, evidence before "done", cost awareness per session, lessons that persist.
-**What it is not:** a framework or a library. It is a handful of files you copy and adapt.
+## Evidence first
 
-## The loop
+| What | Where |
+|---|---|
+| Real-time translation for guided tours, live in production | [fintutto.world](https://fintutto.world), [guide.fintutto.world](https://guide.fintutto.world) |
+| Document analysis for German social-benefit notices (special-category data), live | [jobsi.me](https://jobsi.me) |
+| Real code from the translation system's transport layer, extracted, hardened, 21 tests | [resilient-transport](https://github.com/alexanderdeibel-Fintutto/resilient-transport) |
+| Three case studies with the honest status of each | [docs/case-studies.md](docs/case-studies.md) |
+| What went wrong in production and what I changed because of it | [docs/field-notes.md](docs/field-notes.md) |
+| How the transport tiers fit together | [docs/architecture.md](docs/architecture.md) |
+
+The product repositories are private (customer logic, data model, keys). On request I walk serious prospects through them live.
+
+## The method
 
 ```
 Spec (ISA)  ->  agent team  ->  gates  ->  production  ->  lessons into memory
@@ -14,21 +24,23 @@ Spec (ISA)  ->  agent team  ->  gates  ->  production  ->  lessons into memory
                  check
 ```
 
-## What is in here
+Specs come first and name the exact commands that prove each goal. Agents have fixed roles. "Done" means evidence from this session, not a claim. Cost is tracked per session. Every incident ends in a rule, a hook or a test.
+
+## What is in this repository
 
 | Path | Purpose |
 |---|---|
-| `templates/ISA.md` | One-page-ish spec: problem, goal, scope, design, failure modes, test plan, open questions. Written before any code. |
-| `templates/ADR.md` | Architecture decision record for choices that are expensive to reverse. |
-| `templates/PREMORTEM.md` | "It is six months later and this failed. Why?" for plans with a high cost of failure. |
-| `skills/done-check/SKILL.md` | A skill that turns "done" into evidence: classify the diff, derive the checks, run them, report DONE / UNVERIFIED / BLOCKED. |
-| `hooks/fact-check-reminder.sh` | PreToolUse hook. Before the first code commit of a session it asks for independent verification of the session's claims. |
-| `hooks/cost-guard.sh` | UserPromptSubmit hook. Warns when a session gets long or an expensive model is doing routine execution. |
-| `docs/agent-roles.md` | The four roles (builder, tester, reviewer, fact-checker) and when to use which. |
-| `docs/cost-governance.md` | Model routing and session hygiene rules, with the reasoning. |
-| `docs/honesty-rules.md` | The rules that stop agents from claiming success they did not see. |
+| `docs/case-studies.md` | Three projects, what was built, what is proven, what is still open. |
+| `docs/field-notes.md` | Six production lessons: security, data, agent behaviour. |
+| `docs/architecture.md` | The four transport tiers and the agent loop as diagrams. |
+| `docs/agent-roles.md` | Builder, tester, reviewer, fact-checker. |
+| `docs/cost-governance.md` | Model routing and session hygiene, with the reasoning. |
+| `docs/honesty-rules.md` | Rules that stop agents from claiming success they did not see. |
+| `templates/` | ISA (spec), ADR (decision record), premortem. |
+| `skills/done-check/` | A skill that turns "done" into evidence: DONE / UNVERIFIED / BLOCKED. |
+| `hooks/` | `fact-check-reminder.sh` and `cost-guard.sh`, both tested. |
 
-## Install (about 10 minutes)
+## Install the starter kit (about 10 minutes)
 
 1. Copy `hooks/*.sh` to `~/.claude/hooks/` and `chmod +x` them.
 2. Register them in `~/.claude/settings.json` (example in `docs/cost-governance.md`).
@@ -41,9 +53,10 @@ Requires `bash`, `jq`, `git`. Tested on macOS.
 ## Honest limits
 
 - The hooks remind and warn. They cannot prove that an agent really ran a check.
-- The cost thresholds are starting points from my own usage. Tune them.
-- This setup assumes you read the diffs that matter. It reduces review effort, it does not remove it.
+- Cost thresholds are starting points from my own usage. Tune them.
+- The method reduces review effort. It does not remove the need to read the diffs that matter.
+- Commercial validation of my products is still open. The case studies say so.
 
 ## About
 
-Built by Alexander Deibel. I build and operate AI products (real-time translation, document analysis with special-category data, internal back-office tools) and set up agentic engineering workflows for teams. Contact: hello@fintutto.de
+Alexander Deibel. 30 years of project leadership in culture and events (budgets up to EUR 3.4M, grants, public procurement), since 2024 building AI products and agentic engineering setups. Available for AI implementation, process automation and for setting up agent workflows in teams. Remote (DACH), on-site possible. hello@fintutto.de
