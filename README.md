@@ -6,7 +6,7 @@ How I build and operate software with AI coding agents as a disciplined team, as
 
 | What | Where |
 |---|---|
-| Real-time translation for guided tours, live in production | [fintutto.world](https://fintutto.world), [guide.fintutto.world](https://guide.fintutto.world) |
+| Real-time translation for guided tours (web live, Android in pilot) | [fintutto.world](https://fintutto.world), [guide.fintutto.world](https://guide.fintutto.world) |
 | Document analysis for German social-benefit notices (special-category data), live | [jobsi.me](https://jobsi.me) |
 | Real code from the translation system's transport layer, extracted, hardened, 21 tests | [resilient-transport](https://github.com/alexanderdeibel-Fintutto/resilient-transport) |
 | Three case studies with the honest status of each | [docs/case-studies.md](docs/case-studies.md) |
